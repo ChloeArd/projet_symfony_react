@@ -1,0 +1,104 @@
+.Product {
+    width: 100%;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #F2F2F3;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
+}
+
+.Product:hover {
+    box-shadow: rgba(23, 38, 211, 0.48) 0 5px 15px 0;
+}
+
+.image {
+    width: 25%;
+    margin: auto;
+}
+
+.image >img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.content {
+    width: 70%;
+}
+
+.favorite {
+    position: absolute;
+    right: 11%;
+    color: #BBC0C9;
+    font-size: 20px;
+}
+
+.favorite:hover {
+    color: #C72C2C;
+}
+
+.description {
+    color: #2F3540;
+}
+
+.flexRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.price {
+    font-size: 35px;
+    font-weight: bold;
+    position: absolute;
+    right: 11%;
+}
+
+.QuantitySelector {
+    font-size: 20px;
+    padding: 5px;
+    border: 1px solid #F2F2F3;
+    border-radius: 5px;
+    margin: 20px;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.less, .add {
+    background-color: #F3F4F6;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
+    margin: 0 5px;
+    width: 34%;
+}
+
+.less:hover {
+    background-color: #d9d9d9;
+}
+
+.add {
+    background-color: #1E64DD;
+    color: white;
+}
+
+.add:hover {
+    background-color: #3f3fb6;
+}
+
+input {
+    border: none;
+    width: 34%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.product-disabled {
+    background-color: black;
+}

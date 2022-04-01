@@ -1,0 +1,39 @@
+form {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #F2F2F3;
+    width: 50%;
+    margin: 20px auto;
+    padding: 40px;
+    align-items: center;
+}
+
+form > input, form > textarea {
+    background-color: #F2F2F3;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 20px 0;
+    border: none;
+    width: 70%;
+}
+
+form > input[type="submit"] {
+    background-color: #1E64DD;
+    color: white;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 20px 0;
+}
+
+form > input[type="submit"]:hover {
+    background-color: #3f3fb6;
+}
+
+form > label {
+    font-size: 25px;
+    padding: 15px;
+}
+
+.red {
+    color: red;
+}

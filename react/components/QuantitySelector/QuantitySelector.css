@@ -1,0 +1,42 @@
+.QuantitySelector {
+    font-size: 20px;
+    padding: 5px;
+    border: 1px solid #F2F2F3;
+    border-radius: 5px;
+    margin: 20px;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.less, .add {
+    background-color: #F3F4F6;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
+    margin: 0 5px;
+    width: 34%;
+}
+
+.less:hover {
+    background-color: #d9d9d9;
+}
+
+.add {
+    background-color: #1E64DD;
+    color: white;
+}
+
+.add:hover {
+    background-color: #3f3fb6;
+}
+
+input {
+    border: none;
+    width: 34%;
+    font-size: 20px;
+    text-align: center;
+}
