@@ -10,7 +10,7 @@ class AppFixtures extends Fixture
 {
     public function load(ObjectManager $manager): void
     {
-        foreach (['software', 'Hardware', 'Autres'] as $categoryName) {
+        foreach (['Software', 'Hardware', 'Autres'] as $categoryName) {
             $category = (new Category())->setName($categoryName);
             $manager->persist((object)$category);
         }
