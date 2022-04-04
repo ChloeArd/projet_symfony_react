@@ -4,7 +4,6 @@ namespace App\Entity;
 
 use App\Repository\CartItemRepository;
 use Doctrine\ORM\Mapping as ORM;
-use Model\Entity\Cart;
 use Symfony\Component\Serializer\Annotation\Ignore;
 
 #[ORM\Entity(repositoryClass: CartItemRepository::class)]
