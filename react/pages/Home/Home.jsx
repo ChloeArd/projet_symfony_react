@@ -12,6 +12,19 @@ export const Home = function () {
   const [categories, setCategories] = useState([[]]);
   const [factor, setFactor] = useState(0);
 
+
+  useEffect(() => {
+
+    //Avec XHR
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', '/api/products');
+    xhr.responseType = 'json';
+    xhr.onload = () => {
+      setProducts(xhr.response)
+    };
+    xhr.send();
+  }, []);
+
   useEffect(() => {
     document.title = "Accueil";
   }, []);

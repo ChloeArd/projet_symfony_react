@@ -21,7 +21,7 @@ export const Product = function ({ product, setIsProductUpdated = null }) {
   return (
     <div className="Product" id={product.id}>
       <div className="image">
-        <img src={require(`./../../../assets/${product.image}`)} alt={product.name} />
+        <img src={require(`./../../../public/uploads/${product.image}`)} alt={product.name} />
       </div>
       <div className="content">
         <span className="favorite">

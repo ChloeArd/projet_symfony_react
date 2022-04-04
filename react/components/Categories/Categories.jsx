@@ -22,7 +22,7 @@ export const Categories = function ({setCategory}) {
                         .then(data => setCategories(data))
                 }
             })
-*/
+        */
 
         /**
         async function getCategories() {
