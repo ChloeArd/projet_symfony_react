@@ -52,7 +52,7 @@ class CartController extends AbstractController
                 ->setCart($cart)
                 ->setQuantity(1);
         }
-        // Si le cart existe et que la quantié passée et actuelle donne 0, on supprime le produit au cart
+        // Si le cart existe et que la quantité passée et actuelle donne 0, on supprime le produit au cart
         elseif ($cartItem && $cartItem->getQuantity() + $quantity <= 0) {
             $this->entityManager->remove($cartItem);
             $this->entityManager->flush();
@@ -68,9 +68,22 @@ class CartController extends AbstractController
             $cartItem->setQuantity($cartItem->getQuantity() + $quantity);
         }
         //On gère le cas ou on nous demande autre chose
+        else {
+            return $this->returnError("Vous tentez d'ajouter une quantité 0 ou moins d'un produit, c'est impossible");
+        }
 
-        $productId = $request->get('product_id');
-        $quantity = $request->get('quantity');
-        return $this->json(['product' => $productId, 'quantity' => $quantity]);
+        $this->entityManager->persist($cartItem);
+        $this->entityManager->flush();
+        $this->entityManager->refresh($cart);
+
+        return $this->json($cart);
+    }
+
+    private function returnError(string $errorMessage): JsonResponse
+    {
+        return $this->json([
+            'error' => true,
+            'message' => $errorMessage
+        ]);
     }
 }
