@@ -40,11 +40,11 @@ export const Product = function ({ product, setCartUpdated }) {
                 (parseInt(product.stock) === 0 ? " product-disabled" : "")
               }
             >
-              <button className="less" onClick={handleClick(product.id, -1)}>
+              <button className="less" onClick={() => handleClick(product.id, -1)}>
                 -
               </button>
               <input type="number" value={product.cart} />
-              <button className="add" onClick={handleClick(product.id, 1)}>
+              <button className="add" onClick={() => handleClick(product.id, 1)}>
                 +
               </button>
             </div>

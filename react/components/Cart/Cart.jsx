@@ -2,10 +2,13 @@ import './Cart.css';
 
 import {CartItem} from "../CartItem/CartItem";
 import {useEffect, useState} from "react";
+import loading from "../../../assets/images/waiting-texting.gif"
 
 export const Cart = function ({cartUpdated, setCartUpdated})
 {
     const [cartItems, setCartItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+
     useEffect(() => {
         /*const xhr = new XMLHttpRequest();
         xhr.open('GET', '/api/cart');
@@ -14,12 +17,14 @@ export const Cart = function ({cartUpdated, setCartUpdated})
         xhr.send();*/
 
         async function getCart() {
+            setIsLoading(true);
             const response = await fetch('/api/cart');
             const data = await response.json();
             setCartItems(data.cartItems);
             setCartUpdated(false);
+            setIsLoading(false);
         }
-        getCart().catch(() => console.log("Erreur avec la récupération du panier !"));
+        getCart().catch(() => setIsLoading(false));
     }, [cartUpdated]);
 
     function handleCartEmptyButtonClick() {
@@ -30,7 +35,12 @@ export const Cart = function ({cartUpdated, setCartUpdated})
     return (
         <div className="Cart">
             <h1 className="title">Vos articles</h1>
-            {cartItems.map(cartItem => <CartItem key={cartItem.product.id} product={cartItem}/>)}
+            {isLoading ? (
+                <img id="loading" src={loading} alt="Le panier est en chargement" />
+            ) : (
+            cartItems.map(cartItem => <CartItem key={cartItem.product.id} cartItem={cartItem}/>)
+            )}
+
             <button className="empty" onClick={handleCartEmptyButtonClick}>Vider le panier</button>
         </div>
     );
