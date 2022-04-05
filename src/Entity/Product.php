@@ -33,14 +33,6 @@ class Product
     #[ORM\Column(type: 'string', length: 255)]
     private $image;
 
-    #[ORM\OneToMany(mappedBy: 'product', targetEntity: CartItem::class)]
-    private $cart;
-
-    public function __construct()
-    {
-        $this->cart = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -114,36 +106,6 @@ class Product
     public function setImage(string $image): self
     {
         $this->image = $image;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, CartItem>
-     */
-    public function getCart(): Collection
-    {
-        return $this->cart;
-    }
-
-    public function addCart(CartItem $cart): self
-    {
-        if (!$this->cart->contains($cart)) {
-            $this->cart[] = $cart;
-            $cart->setProduct($this);
-        }
-
-        return $this;
-    }
-
-    public function removeCart(CartItem $cart): self
-    {
-        if ($this->cart->removeElement($cart)) {
-            // set the owning side to null (unless already changed)
-            if ($cart->getProduct() === $this) {
-                $cart->setProduct(null);
-            }
-        }
 
         return $this;
     }

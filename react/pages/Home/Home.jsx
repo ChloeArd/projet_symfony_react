@@ -12,40 +12,16 @@ export const Home = function () {
   // const [categories, setCategories] = useState([[]]);
   // const [factor, setFactor] = useState(0);
 
-
-  useEffect(() => {
-
-    //Avec XHR
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', '/api/products');
-    xhr.responseType = 'json';
-    xhr.onload = () => {
-      setProducts(xhr.response)
-    };
-    xhr.send();
-  }, []);
-
   // set title
-  useEffect(() => {
-    document.title = "Accueil";
-  }, []);
-
-  // useEffect(() => {
-  //   setFactor(Math.floor(Math.random() * 100));
-  // }, [setFactor, category]);
+  useEffect(() => {document.title = "Accueil";}, []);
 
   useEffect(() => {
     async function getProducts() {
-      const response = await fetch('api/products');
+      const response = await fetch('/api/products');
       setProducts(await response.json());
     }
     getProducts().catch(() => console.log('Impossible de récupérer les produits'));
   }, [cartUpdated]);
-
-  // if (cartUpdated) {
-  //   setProducts(products);
-  //   setCartUpdated(false);
-  // }
 
   return (
     <>
