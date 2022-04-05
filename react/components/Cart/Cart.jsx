@@ -21,10 +21,17 @@ export const Cart = function ({cartUpdated, setCartUpdated})
         getCart().catch(() => setIsLoading(false));
     }, [cartUpdated]);
 
-    function handleCartEmptyButtonClick() {
+    /*function handleCartEmptyButtonClick() {
         cartItems.map(cartItem => cartItem.quantity = 0);
         setCartUpdated(true);
+    }*/
+
+    async function deleteCartClick() {
+        await fetch("api/cart/delete", {method: "post"});
+        setCartUpdated(true);
     }
+
+
 
     return (
         <div className="Cart">
@@ -35,7 +42,7 @@ export const Cart = function ({cartUpdated, setCartUpdated})
             cartItems.map(cartItem => <CartItem key={cartItem.product.id} cartItem={cartItem}/>)
             )}
 
-            <button className="empty" onClick={handleCartEmptyButtonClick}>Vider le panier</button>
+            <button className="empty" onClick={deleteCartClick}>Vider le panier</button>
         </div>
     );
 }

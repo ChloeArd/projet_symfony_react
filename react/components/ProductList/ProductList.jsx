@@ -17,7 +17,7 @@ export const ProductList = function ({category, setCartUpdated}) {
     return(
         <div className="ProductList">
             {products
-                .filter(product => category === 0 || product.category === category)
+                .filter(product => category === 0 || product.category.id === category)
                 .map(product => <Product key={product.id} product={product} setCartUpdated={setCartUpdated} />)}
         </div>
     );

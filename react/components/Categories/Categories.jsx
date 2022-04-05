@@ -4,14 +4,17 @@ import {useState, useEffect} from 'react';
 
 export const Categories = function ({setCategory}) {
     const [categories, setCategories] = useState([]);
+    const defaultCategory = {id: 0, name: "Tout"};
+
+
     useEffect(() => {
 
         //Avec XHR
-        const xhr = new XMLHttpRequest();
+        /*const xhr = new XMLHttpRequest();
         xhr.open('GET', '/api/categories');
         xhr.responseType = 'json';
         xhr.onload = () => {setCategories(xhr.response)};
-        xhr.send();
+        xhr.send();*/
 
 
         //Fetch et les promesses
@@ -24,13 +27,14 @@ export const Categories = function ({setCategory}) {
             })
         */
 
-        /**
+
         async function getCategories() {
-            const data = await fetch('/api/categories');
-            setCategories(await data.json());
+            const response = await fetch('/api/categories');
+            const data = await response.json();
+            setCategories([defaultCategory, ...data]);
         }
         getCategories().catch(() => console.log("Erreur de récupération de catégories !"));
-         */
+
     }, []);
 
     return (

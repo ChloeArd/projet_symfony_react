@@ -89,4 +89,11 @@ class CartController extends AbstractController
             'message' => $errorMessage
         ]);
     }
+
+    #[Route('/api/cart/delete', name: 'api_cart_delete')]
+    public function deleteCart(SessionCartService $sessionCartService): JsonResponse
+    {
+        $sessionCartService->deleteSessionCart();
+        return $this->json(['status' => true]);
+    }
 }
