@@ -55,14 +55,16 @@ class CartController extends AbstractController
         // Si le cart existe et que la quantité passée et actuelle donne 0, on supprime le produit au cart
         elseif ($cartItem && $cartItem->getQuantity() + $quantity <= 0) {
             $this->entityManager->remove($cartItem);
+            $product->setStock($product->getStock() + -$quantity);
             $this->entityManager->flush();
             $this->entityManager->refresh($cart);
             return $this->json($cart); // Refresh et return sinon le cart item s'ajoute a nouveau avec dernière quantité connue
         }
-        // On gère le cas ou la quantité demandée est supérieur a la quantité disponible
-        elseif ($cartItem && $cartItem->getQuantity() + $quantity > $product->getStock()) {
+        // On gère le cas ou le stock est à 0
+        elseif ($product->getStock() === 0 && $quantity !== -1) {
             return $this->returnError("Le stock ne permet pas d'ajouter autant de ce produit");
         }
+        // Cas normal si le produit est déjà dans le panier
         elseif ($cartItem && $cartItem->getQuantity() + $quantity > 0) {
             // Mise à jour de la quantité pour le cart item (existant ou nouveau)
             $cartItem->setQuantity($cartItem->getQuantity() + $quantity);
@@ -72,6 +74,7 @@ class CartController extends AbstractController
             return $this->returnError("Vous tentez d'ajouter une quantité 0 ou moins d'un produit, c'est impossible");
         }
 
+        $product->setStock($product->getStock() + -$quantity);
         $this->entityManager->persist($cartItem);
         $this->entityManager->flush();
         $this->entityManager->refresh($cart);

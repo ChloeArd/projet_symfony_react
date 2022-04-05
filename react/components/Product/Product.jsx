@@ -2,21 +2,44 @@ import "./Product.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/fontawesome-free-regular";
+import {useState} from "react";
 
 export const Product = function ({ product, setCartUpdated }) {
 
+  const [stock, setStock] = useState(product.stock);
+
+  /**
+   * Handle click on + and - buttons
+   * @param productId
+   * @param amount
+   * @returns {Promise<void>}
+   */
   async function handleClick(productId, amount) {
-    await fetch("/api/cart/add", {
+
+    const fetchInit = {
       method: "post",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      },
+        Accept: "application/json",
+        "Content-Type": "application/json"
+      }
+    };
+
+    await fetch("/api/cart/add", {
+      ...fetchInit,
       "body": JSON.stringify({
         "product_id": productId,
         "quantity": amount,
       })
     });
+
+    //Getting new product stock
+    const response = await fetch("/api/product/stock", {
+      ...fetchInit,
+      body: JSON.stringify({
+        product_id: productId
+      })
+    });
+
     // Ici, je ne gère pas une réponse négative, ou une erreur libre à vous de créer un composant pour le faire
     setCartUpdated(true);
   }
@@ -33,6 +56,7 @@ export const Product = function ({ product, setCartUpdated }) {
         <h1>{product.name}</h1>
         <p className="description">{product.description}</p>
         <div className="flexRow">
+          <p className="stock-status">En stock: <span>{product.stock}</span></p>
           {null !== setCartUpdated && (
             <div
               className={
@@ -43,7 +67,6 @@ export const Product = function ({ product, setCartUpdated }) {
               <button className="less" onClick={() => handleClick(product.id, -1)}>
                 -
               </button>
-              <input type="number" value={product.cart} />
               <button className="add" onClick={() => handleClick(product.id, 1)}>
                 +
               </button>
