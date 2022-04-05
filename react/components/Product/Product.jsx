@@ -3,19 +3,22 @@ import "./Product.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/fontawesome-free-regular";
 
-export const Product = function ({ product, setIsProductUpdated = null }) {
-  function handleMinusClick(e) {
-    if (product.cart > 0) {
-      product.cart -= 1;
-      setIsProductUpdated(true);
-    }
-  }
+export const Product = function ({ product, setCartUpdated }) {
 
-  function handlePlusClick(e) {
-    if (product.cart < product.stock) {
-      product.cart += 1;
-      setIsProductUpdated(true);
-    }
+  async function handleClick(productId, amount) {
+    await fetch("/api/cart/add", {
+      method: "post",
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      "body": JSON.stringify({
+        "product_id": productId,
+        "quantity": amount,
+      })
+    });
+    // Ici, je ne gère pas une réponse négative, ou une erreur libre à vous de créer un composant pour le faire
+    setCartUpdated(true);
   }
 
   return (
@@ -27,21 +30,21 @@ export const Product = function ({ product, setIsProductUpdated = null }) {
         <span className="favorite">
           <FontAwesomeIcon icon={faHeart} />
         </span>
-        <h1>{product["title"]}</h1>
+        <h1>{product.name}</h1>
         <p className="description">{product.description}</p>
         <div className="flexRow">
-          {null !== setIsProductUpdated && (
+          {null !== setCartUpdated && (
             <div
               className={
                 "QuantitySelector " +
                 (parseInt(product.stock) === 0 ? " product-disabled" : "")
               }
             >
-              <button className="less" onClick={handleMinusClick}>
+              <button className="less" onClick={handleClick(product.id, -1)}>
                 -
               </button>
               <input type="number" value={product.cart} />
-              <button className="add" onClick={handlePlusClick}>
+              <button className="add" onClick={handleClick(product.id, 1)}>
                 +
               </button>
             </div>

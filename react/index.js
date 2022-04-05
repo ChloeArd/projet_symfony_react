@@ -1,5 +1,5 @@
 import "./index.css";
-import reportWebVitals from "../assets/js/reportWebVitals";
+
 
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Home } from "./pages/Home/Home";
@@ -8,6 +8,7 @@ import { UserAccount } from "./pages/UserAccount/UserAccount";
 import { Header } from "./components/Header/Header";
 import { Promotions } from "./pages/Promotions/Promotions";
 import { RouteNotFound } from "./components/RouteNotFound/RouteNotFound";
+import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -23,4 +24,4 @@ ReactDOM.render(
   document.getElementById("root")
 );
 
-reportWebVitals();
+//reportWebVitals();

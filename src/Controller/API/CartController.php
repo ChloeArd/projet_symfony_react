@@ -32,7 +32,7 @@ class CartController extends AbstractController
     {
         $payload = json_decode($request->getContent(), true);
         if (!isset($payload['product_id']) || !isset($payload['quantity'])) {
-            return $this->returnError('Missing paramaters');
+            return $this->returnError('Il manque des paramètres');
         }
 
         $product = $productRepository->find((int)$payload['product_id']);
@@ -45,7 +45,7 @@ class CartController extends AbstractController
         $cart = $sessionCartService->getCart();
         $cartItem = $cart->getCartItem($product);
 
-        //Le cart item n'existe pas, on l'ajoute avec une quantité "1"
+        // Le cart item n'existe pas, on l'ajoute avec une quantité "1"
         if(null === $cartItem && $quantity === 1) {
             $cartItem = (new CartItem())
                 ->setProduct($product)
@@ -59,15 +59,15 @@ class CartController extends AbstractController
             $this->entityManager->refresh($cart);
             return $this->json($cart); // Refresh et return sinon le cart item s'ajoute a nouveau avec dernière quantité connue
         }
-        // On gère le cas ou la quantité demandée est supérieurs a la quantité disponible
+        // On gère le cas ou la quantité demandée est supérieur a la quantité disponible
         elseif ($cartItem && $cartItem->getQuantity() + $quantity > $product->getStock()) {
             return $this->returnError("Le stock ne permet pas d'ajouter autant de ce produit");
         }
         elseif ($cartItem && $cartItem->getQuantity() + $quantity > 0) {
-            //Mise à jour de la quantité pour le cart item (existant ou nouveau)
+            // Mise à jour de la quantité pour le cart item (existant ou nouveau)
             $cartItem->setQuantity($cartItem->getQuantity() + $quantity);
         }
-        //On gère le cas ou on nous demande autre chose
+        // On gère le cas ou on nous demande autre chose
         else {
             return $this->returnError("Vous tentez d'ajouter une quantité 0 ou moins d'un produit, c'est impossible");
         }

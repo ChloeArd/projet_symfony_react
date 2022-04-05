@@ -7,10 +7,10 @@ import { ProductList } from "../../components/ProductList/ProductList";
 
 export const Home = function () {
   const [products, setProducts] = useState([]);
-  const [isProductUpdated, setIsProductUpdated] = useState(false);
+  const [cartUpdated, setCartUpdated] = useState(false);
   const [category, setCategory] = useState(0);
-  const [categories, setCategories] = useState([[]]);
-  const [factor, setFactor] = useState(0);
+  // const [categories, setCategories] = useState([[]]);
+  // const [factor, setFactor] = useState(0);
 
 
   useEffect(() => {
@@ -25,29 +25,38 @@ export const Home = function () {
     xhr.send();
   }, []);
 
+  // set title
   useEffect(() => {
     document.title = "Accueil";
   }, []);
 
-  useEffect(() => {
-    setFactor(Math.floor(Math.random() * 100));
-  }, [setFactor, category]);
+  // useEffect(() => {
+  //   setFactor(Math.floor(Math.random() * 100));
+  // }, [setFactor, category]);
 
-  if (isProductUpdated) {
-    setProducts(products);
-    setIsProductUpdated(false);
-  }
+  useEffect(() => {
+    async function getProducts() {
+      const response = await fetch('api/products');
+      setProducts(await response.json());
+    }
+    getProducts().catch(() => console.log('Impossible de récupérer les produits'));
+  }, [cartUpdated]);
+
+  // if (cartUpdated) {
+  //   setProducts(products);
+  //   setCartUpdated(false);
+  // }
 
   return (
     <>
       <div className="width_80">
-        <Cart products={products} setIsProductUpdated={setIsProductUpdated} />
+        <Cart cartUpdated={cartUpdated} setCartUpdated={setCartUpdated} />
         <div className="width_80_2">
-          <Categories setCategory={setCategory} categories={categories} />
+          <Categories setCategory={setCategory} />
           <ProductList
             category={category}
             products={products}
-            setIsProductUpdated={setIsProductUpdated}
+            setCartUpdated={setCartUpdated}
           />
         </div>
       </div>

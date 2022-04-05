@@ -25,7 +25,7 @@ class SessionCartService
      */
     public function getCart(): Cart
     {
-        $cartId = $this->session->get('cart_id');
+        $cartId = $this->session->get('id');
 
         if (!$cartId) {
             $cart = new Cart();
