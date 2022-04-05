@@ -40,7 +40,8 @@ export const Product = function ({ product, setCartUpdated }) {
       })
     });
 
-    // Ici, je ne gère pas une réponse négative, ou une erreur libre à vous de créer un composant pour le faire
+    const data = await response.json();
+    setStock(data.stock);
     setCartUpdated(true);
   }
 
@@ -56,12 +57,12 @@ export const Product = function ({ product, setCartUpdated }) {
         <h1>{product.name}</h1>
         <p className="description">{product.description}</p>
         <div className="flexRow">
-          <p className="stock-status">En stock: <span>{product.stock}</span></p>
+          <p className="stock-status">En stock: <span>{stock}</span></p>
           {null !== setCartUpdated && (
             <div
               className={
                 "QuantitySelector " +
-                (parseInt(product.stock) === 0 ? " product-disabled" : "")
+                (parseInt(stock) === 0 ? " product-disabled" : "")
               }
             >
               <button className="less" onClick={() => handleClick(product.id, -1)}>
