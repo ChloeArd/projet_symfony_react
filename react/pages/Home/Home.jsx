@@ -1,7 +1,7 @@
 import "./Home.css";
 
 import { useEffect, useState } from "react";
-import { Cart } from "../../components/Cart/Cart";
+import { Cart } from "../../components/Cart";
 import { Categories } from "../../components/Categories/Categories";
 import { ProductList } from "../../components/ProductList/ProductList";
 

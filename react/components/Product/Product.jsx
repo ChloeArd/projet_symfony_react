@@ -3,6 +3,9 @@ import "./Product.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHeart } from "@fortawesome/fontawesome-free-regular";
 import {useState} from "react";
+import styled from "styled-components";
+import {lighten} from "polished";
+
 
 export const Product = function ({ product, setCartUpdated }) {
 
@@ -65,12 +68,8 @@ export const Product = function ({ product, setCartUpdated }) {
                 (parseInt(stock) === 0 ? " product-disabled" : "")
               }
             >
-              <button className="less" onClick={() => handleClick(product.id, -1)}>
-                -
-              </button>
-              <button className="add" onClick={() => handleClick(product.id, 1)}>
-                +
-              </button>
+              <MinusButton className="less" onClick={() => handleClick(product.id, -1)}></MinusButton>
+              <PlusButton className="add" onClick={() => handleClick(product.id, 1)}></PlusButton>
             </div>
           )}
           <p className="price">${product.price}</p>
@@ -79,3 +78,34 @@ export const Product = function ({ product, setCartUpdated }) {
     </div>
   );
 };
+
+const MinusButton = styled.button`
+    background-color: #F3F4F6;
+    font-size: 20px;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
+    margin: 0 5px;
+    width: 34%;
+    
+    &:hover {
+      background-color: ${lighten(0.05,"#d9d9d9")};
+    }
+    
+    &:before {
+      content: "-";
+    }
+`;
+
+const PlusButton = styled(MinusButton)`
+    background-color: #1E64DD;
+    color: white;
+    
+    &:hover {
+      background-color: ${lighten(0.05,"#3f3fb6")};
+    }
+    
+    &:before {
+      content: "+";
+    }
+`;
