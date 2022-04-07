@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/fontawesome-free-regular";
 import {useState} from "react";
 import styled from "styled-components";
-import {lighten} from "polished";
+import {darken, lighten} from "polished";
 
 
 export const Product = function ({product, setCartUpdated}) {
@@ -124,7 +124,7 @@ const PlusButton = styled(MinusButton)`
     color: white;
     
     &:hover {
-      background-color: ${lighten(0.05, "#3f3fb6")};
+      background-color: ${darken(0.05, "#3f3fb6")};
     }
     
     &:before {
@@ -142,7 +142,7 @@ const Content = styled.div`
         font-size: 20px;
         
         &:hover {
-            color: #C72C2C;
+            color: ${lighten(0.05, "#C72C2C")};
         }
      }
      
@@ -177,6 +177,6 @@ const QuantitySelector = styled.div`
     justify-content: center;
     
     &.product-disabled {
-        background-color: black;
+        background-color: ${darken(10, "black")};
     }
 `;
