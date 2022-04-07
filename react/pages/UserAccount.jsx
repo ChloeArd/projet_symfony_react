@@ -1,3 +1,8 @@
+import {useEffect} from "react";
+
 export const UserAccount = function () {
-  return <h1>Compte utilisateur</h1>;
+
+  useEffect(() => {document.title = "Mon compte";}, []);
+
+  return <h1>Mon compte</h1>;
 };
