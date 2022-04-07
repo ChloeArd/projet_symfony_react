@@ -84,6 +84,7 @@ const ContainerProduct = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  background-color: white;
 
   &:hover {
     box-shadow: rgba(23, 38, 211, 0.48) 0 5px 15px 0;

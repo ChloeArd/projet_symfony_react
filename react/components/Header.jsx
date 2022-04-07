@@ -1,6 +1,7 @@
 import logo from "../../public/uploads/logo.png";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
+import {ThemeChooser} from "./ThemeChooser";
 
 export const Header = function () {
     return (
@@ -11,6 +12,7 @@ export const Header = function () {
                 <CustomLink to="user-account">User Account</CustomLink>
                 <CustomLink to="contact">Contact</CustomLink>
             </NavLinks>
+            <ThemeChooser />
         </ContainerHeader>
     );
 };

@@ -48,6 +48,7 @@ const ContainerCart = styled.div`
     padding: 15px;
     height: 800px;
     margin: 40px 15px 40px 40px;
+  background-color: white;
 `;
 
 const Title = styled.h1`
