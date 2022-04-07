@@ -48,7 +48,7 @@ export const Product = function ({className, product, setCartUpdated}) {
     return (
         <ContainerProduct id={product.id} className={className}>
             <div className="image">
-                <img src={require(`./../../../public/uploads/${product.image}`)} alt={product.name}/>
+                <img src={require(`./../../public/uploads/${product.image}`)} alt={product.name}/>
             </div>
             <Content>
                 <span><FontAwesomeIcon icon={faHeart}/></span>

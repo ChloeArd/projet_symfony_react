@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import styled from "styled-components";
-import {Product} from "./Product/Product";
+import {Product} from "./Product";
 
 export const ProductList = function ({category, setCartUpdated}) {
     const [products, setProducts] = useState([]);
