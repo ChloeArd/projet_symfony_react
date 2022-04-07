@@ -20,6 +20,7 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
+  width: 7%;
   
   & > button {
     border: none;
