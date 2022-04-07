@@ -1,8 +1,8 @@
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import styled from "styled-components";
 import {Product} from "./Product";
 
-export const ProductList = function ({category, setCartUpdated}) {
+export const ProductList = function ({category}) {
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -17,7 +17,7 @@ export const ProductList = function ({category, setCartUpdated}) {
         <ContainerProductList>
             {products
                 .filter(product => category === 0 || product.category.id === category)
-                .map(product => <CustomProduct key={product.id} product={product} setCartUpdated={setCartUpdated} />)}
+                .map(product => <CustomProduct key={product.id} product={product} />)}
         </ContainerProductList>
     );
 }
