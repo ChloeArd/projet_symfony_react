@@ -1,9 +1,8 @@
-import "./Home.css";
-
 import { useEffect, useState } from "react";
-import { Cart } from "../../components/Cart";
-import { Categories } from "../../components/Categories/Categories";
-import { ProductList } from "../../components/ProductList/ProductList";
+import { Cart } from "../components/Cart";
+import { ProductList } from "../components/ProductList";
+import {Categories} from "../components/Categories.jsx";
+import styled from "styled-components";
 
 export const Home = function () {
   const [cartUpdated, setCartUpdated] = useState(false);
@@ -14,16 +13,30 @@ export const Home = function () {
 
   return (
     <>
-      <div className="width_80">
+      <ContainerLeft>
         <Cart cartUpdated={cartUpdated} setCartUpdated={setCartUpdated} />
-        <div className="width_80_2">
+        <ContainerRight>
           <Categories setCategory={setCategory} />
           <ProductList
             category={category}
             setCartUpdated={setCartUpdated}
           />
-        </div>
-      </div>
+        </ContainerRight>
+      </ContainerLeft>
     </>
   );
 };
+
+const ContainerLeft = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px;
+  display: flex;
+  flex-direction: row;
+`;
+
+const ContainerRight = styled.div`
+  width: 80%;
+  margin: 0 auto;
+  padding: 40px;
+`;

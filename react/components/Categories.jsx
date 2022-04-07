@@ -1,6 +1,5 @@
-import './Categories.css';
-
 import {useState, useEffect} from 'react';
+import styled from "styled-components";
 
 export const Categories = function ({setCategory}) {
     const [categories, setCategories] = useState([]);
@@ -39,9 +38,19 @@ export const Categories = function ({setCategory}) {
 
     return (
         <div className="Categories">
-            <select onChange={(e) => setCategory(parseInt(e.target.value))}>
+            <SelectCategories onChange={(e) => setCategory(parseInt(e.target.value))}>
                 {categories.map(category => <option value={category.id} key={category.id}>{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</option>)}
-            </select>
+            </SelectCategories>
         </div>
     );
 }
+
+const SelectCategories = styled.select`
+    border-radius: 10px;
+    border: 1px solid #F2F2F3;
+    padding: 15px;
+    width: 40%;
+    margin: 15px;
+    font-size: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
+`;

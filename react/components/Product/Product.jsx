@@ -1,12 +1,10 @@
-
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faHeart} from "@fortawesome/fontawesome-free-regular";
 import {useState} from "react";
 import styled from "styled-components";
 import {darken, lighten} from "polished";
 
-
-export const Product = function ({product, setCartUpdated}) {
+export const Product = function ({className, product, setCartUpdated}) {
 
     const [stock, setStock] = useState(product.stock);
 
@@ -48,7 +46,7 @@ export const Product = function ({product, setCartUpdated}) {
     }
 
     return (
-        <ContainerProduct id={product.id}>
+        <ContainerProduct id={product.id} className={className}>
             <div className="image">
                 <img src={require(`./../../../public/uploads/${product.image}`)} alt={product.name}/>
             </div>
@@ -59,7 +57,7 @@ export const Product = function ({product, setCartUpdated}) {
                 <ContainerBottom>
                     <p className="stock-status">En stock: <span>{stock}</span></p>
                     {null !== setCartUpdated && (
-                        <QuantitySelector
+                        <QuantitySelector stockValue={stock}
                             className={
                                 (parseInt(stock) === 0 ? " product-disabled" : "")
                             }
@@ -84,7 +82,6 @@ const ContainerProduct = styled.div`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
     
     &:hover {
         box-shadow: rgba(23, 38, 211, 0.48) 0 5px 15px 0;
@@ -101,6 +98,13 @@ const ContainerProduct = styled.div`
     }
 `;
 
+const isLoaded = false;
+
+const minusLightenLoaded = lighten(0.05, "#d9d9d9");
+const minusLightenNotLoaded = "#ababab"
+
+const plusLighten = lighten(0.1, "#3f3fb6")
+
 const MinusButton = styled.button`
     background-color: #F3F4F6;
     font-size: 20px;
@@ -111,7 +115,7 @@ const MinusButton = styled.button`
     width: 34%;
     
     &:hover {
-      background-color: ${lighten(0.05, "#d9d9d9")};
+      background-color: ${isLoaded ? minusLightenLoaded : minusLightenNotLoaded};
     }
     
     &:before {
@@ -124,7 +128,7 @@ const PlusButton = styled(MinusButton)`
     color: white;
     
     &:hover {
-      background-color: ${darken(0.05, "#3f3fb6")};
+      background-color: ${plusLighten};
     }
     
     &:before {
@@ -164,6 +168,11 @@ const ContainerBottom = styled.div`
     }
 `;
 
+const colors = {
+    primary: darken(10, "black"),
+    secondary: "red"
+}
+
 const QuantitySelector = styled.div`
     font-size: 20px;
     padding: 5px;
@@ -175,8 +184,9 @@ const QuantitySelector = styled.div`
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    background-color: ${(stockValue) => stockValue === 0 ? "#e3e3e3" : "orange"};
     
     &.product-disabled {
-        background-color: ${darken(10, "black")};
+        background-color: ${colors.primary};
     }
 `;

@@ -1,6 +1,6 @@
-import {CartItem} from "./CartItem/CartItem";
+import {CartItem} from "./CartItem";
 import {useEffect, useState} from "react";
-import {Loader} from "./Loader/Loader";
+import {Loader} from "./Loader";
 import styled from "styled-components";
 
 export const Cart = function ({cartUpdated, setCartUpdated})
@@ -45,7 +45,6 @@ const ContainerCart = styled.div`
     width: 20%;
     padding: 15px;
     height: 800px;
-    box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
     margin: 40px 15px 40px 40px;
 `;
 

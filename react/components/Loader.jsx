@@ -1,5 +1,4 @@
-import "./Loader.css";
-import loader from "../../../assets/images/waiting-texting.gif"
+import loader from "../../assets/images/waiting-texting.gif"
 
 export const Loader = function () {
 
