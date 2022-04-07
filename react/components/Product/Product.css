@@ -69,11 +69,27 @@
     justify-content: center;
 }
 
-input {
-    border: none;
-    width: 34%;
+.less, .add {
+    background-color: #F3F4F6;
     font-size: 20px;
-    text-align: center;
+    border-radius: 5px;
+    padding: 15px;
+    border: none;
+    margin: 0 5px;
+    width: 34%;
+}
+
+.less:hover {
+    background-color: #d9d9d9;
+}
+
+.add {
+    background-color: #1E64DD;
+    color: white;
+}
+
+.add:hover {
+    background-color: #3f3fb6;
 }
 
 .product-disabled {
