@@ -5,16 +5,13 @@ export const Categories = function ({setCategory}) {
     const [categories, setCategories] = useState([]);
     const defaultCategory = {id: 0, name: "Tout"};
 
-
     useEffect(() => {
-
         //Avec XHR
         /*const xhr = new XMLHttpRequest();
         xhr.open('GET', '/api/categories');
         xhr.responseType = 'json';
         xhr.onload = () => {setCategories(xhr.response)};
         xhr.send();*/
-
 
         //Fetch et les promesses
         /**fetch('/api/categories')
@@ -25,7 +22,6 @@ export const Categories = function ({setCategory}) {
                 }
             })
         */
-
 
         async function getCategories() {
             const response = await fetch('/api/categories');
