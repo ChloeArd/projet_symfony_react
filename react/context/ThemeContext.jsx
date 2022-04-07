@@ -27,7 +27,7 @@ const BodyStyle = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-color: ${({chosenTheme}) => 
-        chosenTheme === "light" ? "F9F9FA" : "#313131"};
+        chosenTheme === "light" ? "#F9F9FA" : "#313131"};
     width: 100%;
     display: flex;
     flex-direction: column;

@@ -21,7 +21,8 @@ const ButtonContainer = styled.div`
   justify-content: flex-end;
   flex-grow: 1;
   width: 7%;
-  
+  padding-right: 20px;
+
   & > button {
     border: none;
     background-color: #5eb5e0;
