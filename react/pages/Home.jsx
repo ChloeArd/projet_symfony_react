@@ -3,9 +3,9 @@ import { Cart } from "../components/Cart";
 import { ProductList } from "../components/ProductList";
 import {Categories} from "../components/Categories.jsx";
 import styled from "styled-components";
+import {CartContext} from "../context/CartContext";
 
 export const Home = function () {
-  const [cartUpdated, setCartUpdated] = useState(false);
   const [category, setCategory] = useState(0);
 
   // set title
@@ -13,16 +13,15 @@ export const Home = function () {
 
   return (
     <>
-      <ContainerLeft>
-        <Cart cartUpdated={cartUpdated} setCartUpdated={setCartUpdated} />
-        <ContainerRight>
-          <Categories setCategory={setCategory} />
-          <ProductList
-            category={category}
-            setCartUpdated={setCartUpdated}
-          />
-        </ContainerRight>
-      </ContainerLeft>
+      <CartContext>
+        <ContainerLeft>
+          <Cart/>
+          <ContainerRight>
+            <Categories setCategory={setCategory} />
+            <ProductList category={category} />
+          </ContainerRight>
+        </ContainerLeft>
+      </CartContext>
     </>
   );
 };

@@ -1,12 +1,14 @@
 import {CartItem} from "./CartItem";
-import {useEffect, useState} from "react";
+import {useContext, useEffect, useState} from "react";
 import {Loader} from "./Loader";
 import styled from "styled-components";
+import {CartContextProvider} from "../context/CartContext";
 
-export const Cart = function ({cartUpdated, setCartUpdated})
+export const Cart = function ()
 {
     const [cartItems, setCartItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
+    const {cartUpdated, setCartUpdated} = useContext(CartContextProvider);
 
     useEffect(() => {
         async function getCart() {
