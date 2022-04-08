@@ -4,14 +4,11 @@ import {useState, useContext} from "react";
 import styled from "styled-components";
 import {darken, lighten} from "polished";
 import {CartContextProvider} from "../context/CartContext";
-import {ThemeContextProvider} from "../context/ThemeContext";
-import {getTheme} from "../theming";
 
 export const Product = function ({className, product, }) {
 
     const [stock, setStock] = useState(product.stock);
     const {setCartUpdated} = useContext(CartContextProvider);
-    const {theme} = useContext(ThemeContextProvider);
 
     /**
      * Handle click on + and - buttons
@@ -51,7 +48,7 @@ export const Product = function ({className, product, }) {
     }
 
     return (
-        <ContainerProduct id={product.id} className={className} theme={getTheme(theme)}>
+        <ContainerProduct id={product.id} className={className} >
             <div className="image">
                 <img src={require(`./../../public/uploads/${product.image}`)} alt={product.name}/>
             </div>

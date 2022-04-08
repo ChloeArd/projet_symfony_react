@@ -1,20 +1,22 @@
 import {createContext, useState} from "react";
-import {createGlobalStyle} from "styled-components";
+import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {getTheme} from "../theming";
 
 export const ThemeContextProvider = createContext({});
 
 export const ThemeContext = function ({children}) {
-    const [theme, setTheme] = useState("light");
+    const [mode, setMode] = useState("light");
 
-    function toggleTheme() {
-        setTheme(theme === "light" ? "dark" : "light");
+    function toggleMode() {
+        setMode(mode === "light" ? "dark" : "light");
     }
 
     return(
-      <ThemeContextProvider.Provider value={{theme, toggleTheme}}>
-          <BodyStyle theme={getTheme(theme)} />
-          {children}
+      <ThemeContextProvider.Provider value={{mode, toggleMode}}>
+          <ThemeProvider theme={getTheme(mode)}>
+              <BodyStyle />
+              {children}
+          </ThemeProvider>
       </ThemeContextProvider.Provider>
     );
 }

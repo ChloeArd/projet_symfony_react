@@ -1,12 +1,10 @@
 import {useState, useEffect, useContext} from 'react';
 import styled from "styled-components";
-import {ThemeContextProvider} from "../context/ThemeContext";
 import {getTheme} from "../theming";
 
 export const Categories = function ({setCategory}) {
     const [categories, setCategories] = useState([]);
     const defaultCategory = {id: 0, name: "Tout"};
-    const {theme} = useContext(ThemeContextProvider);
 
     useEffect(() => {
         //Avec XHR
@@ -37,7 +35,7 @@ export const Categories = function ({setCategory}) {
 
     return (
         <div className="Categories">
-            <SelectCategories theme={getTheme(theme)} onChange={(e) => setCategory(parseInt(e.target.value))}>
+            <SelectCategories onChange={(e) => setCategory(parseInt(e.target.value))}>
                 {categories.map(category => <option value={category.id} key={category.id}>{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</option>)}
             </SelectCategories>
         </div>

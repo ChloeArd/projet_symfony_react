@@ -5,11 +5,19 @@ import {Contact} from "./pages/Contact";
 import {UserAccount} from "./pages/UserAccount";
 import {Header} from "./components/Header";
 import {RouteNotFound} from "./components/RouteNotFound";
-import {ThemeContext} from "./context/ThemeContext";
+import {createGlobalStyle, ThemeProvider} from "styled-components";
+import {getTheme} from "./theming";
+
+const BodyStyle = createGlobalStyle`
+  body {
+    background-color: ${({theme}) => theme !== undefined && theme.body.background};
+  }
+`;
 
 ReactDOM.render(
     <BrowserRouter>
-        <ThemeContext>
+        <ThemeProvider theme={getTheme("dark")}>
+            <BodyStyle />
             <Header/>
             <Routes>
                 <Route path="/" element={<Home/>}/>
@@ -17,7 +25,7 @@ ReactDOM.render(
                 <Route path="user-account" element={<UserAccount/>}/>
                 <Route path="*" element={<RouteNotFound/>}/>
             </Routes>
-        </ThemeContext>
+        </ThemeProvider>
     </BrowserRouter>,
     document.getElementById("root")
 );

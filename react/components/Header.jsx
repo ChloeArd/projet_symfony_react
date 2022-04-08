@@ -2,21 +2,17 @@ import logo from "../../public/uploads/logo.png";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {ThemeChooser} from "./ThemeChooser";
-import {ThemeContextProvider} from "../context/ThemeContext";
 import {getTheme} from "../theming";
-import {useContext} from "react";
 
 export const Header = function () {
-
-    const {theme} = useContext(ThemeContextProvider);
 
     return (
         <ContainerHeader>
             <img src={logo} alt="Shop logo"/>
             <NavLinks>
-                <CustomLink theme={getTheme(theme)} $background="coral" to="/">Accueil</CustomLink>
-                <CustomLink theme={getTheme(theme)} to="user-account">User Account</CustomLink>
-                <CustomLink theme={getTheme(theme)} to="contact">Contact</CustomLink>
+                <CustomLink $background="coral" to="/">Accueil</CustomLink>
+                <CustomLink to="user-account">User Account</CustomLink>
+                <CustomLink to="contact">Contact</CustomLink>
             </NavLinks>
             <ThemeChooser />
         </ContainerHeader>

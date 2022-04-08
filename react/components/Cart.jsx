@@ -3,15 +3,12 @@ import {useContext, useEffect, useState} from "react";
 import {Loader} from "./Loader";
 import styled from "styled-components";
 import {CartContextProvider} from "../context/CartContext";
-import {ThemeContextProvider} from "../context/ThemeContext";
-import {getTheme} from "../theming";
 
 export const Cart = function ()
 {
     const [cartItems, setCartItems] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const {cartUpdated, setCartUpdated} = useContext(CartContextProvider);
-    const {theme} = useContext(ThemeContextProvider);
 
     useEffect(() => {
         async function getCart() {
@@ -31,15 +28,15 @@ export const Cart = function ()
     }
 
     return (
-        <ContainerCart theme={getTheme(theme)}>
-            <Title theme={getTheme(theme)}>Vos articles</Title>
+        <ContainerCart >
+            <Title >Vos articles</Title>
             {isLoading ? (
                 <Loader />
             ) : (
             cartItems.map(cartItem => <CartItem key={cartItem.product.id} cartItem={cartItem}/>)
             )}
 
-            <Button theme={getTheme(theme)} onClick={deleteCartClick}>Vider le panier</Button>
+            <Button onClick={deleteCartClick}>Vider le panier</Button>
         </ContainerCart>
     );
 }
