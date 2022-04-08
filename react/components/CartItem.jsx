@@ -1,15 +1,20 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/fontawesome-free-regular';
 import styled from "styled-components";
+import {ThemeContextProvider} from "../context/ThemeContext";
+import {getTheme} from "../theming";
+import {useContext} from "react";
 
 export const CartItem = function ({cartItem}) {
+
+    const {theme} = useContext(ThemeContextProvider);
 
     async function deleteOneCartClick() {
         console.log(cartItem.id);
     }
 
     return (
-        <ContainerCartItem id={cartItem.product.id}>
+        <ContainerCartItem id={cartItem.product.id} theme={getTheme(theme)}>
             <CartItemLeft>
                 <p onClick={deleteOneCartClick} className="trash"><FontAwesomeIcon icon={faTrashAlt} /></p>
             </CartItemLeft>
@@ -29,8 +34,9 @@ const ContainerCartItem = styled.div`
     flex-direction: row;
     align-items: center;
     width: 100%;
-    
-    &:hover {
+    color: ${({theme}) => theme.components.textColor};
+
+  &:hover {
         color: #ffc74b;
     }
 `;

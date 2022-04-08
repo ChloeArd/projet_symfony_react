@@ -16,12 +16,11 @@ export const ThemeChooser = function () {
 }
 
 const ButtonContainer = styled.div`
-  padding: 20px 0;
+  padding: 0 20px;
   display: flex;
   justify-content: flex-end;
   flex-grow: 1;
   width: 7%;
-  padding-right: 20px;
 
   & > button {
     border: none;
@@ -29,5 +28,9 @@ const ButtonContainer = styled.div`
     padding: 8px;
     border-radius: 10px;
     color: white;
+
+    &:hover {
+      background-color: #4e95b9;
+    }
   }
 `;

@@ -1,9 +1,12 @@
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import styled from "styled-components";
+import {ThemeContextProvider} from "../context/ThemeContext";
+import {getTheme} from "../theming";
 
 export const Categories = function ({setCategory}) {
     const [categories, setCategories] = useState([]);
     const defaultCategory = {id: 0, name: "Tout"};
+    const {theme} = useContext(ThemeContextProvider);
 
     useEffect(() => {
         //Avec XHR
@@ -34,7 +37,7 @@ export const Categories = function ({setCategory}) {
 
     return (
         <div className="Categories">
-            <SelectCategories onChange={(e) => setCategory(parseInt(e.target.value))}>
+            <SelectCategories theme={getTheme(theme)} onChange={(e) => setCategory(parseInt(e.target.value))}>
                 {categories.map(category => <option value={category.id} key={category.id}>{category.name.charAt(0).toUpperCase() + category.name.slice(1)}</option>)}
             </SelectCategories>
         </div>
@@ -42,11 +45,13 @@ export const Categories = function ({setCategory}) {
 }
 
 const SelectCategories = styled.select`
+    border: none;
     border-radius: 10px;
-    border: 1px solid #F2F2F3;
     padding: 15px;
     width: 40%;
     margin: 15px;
     font-size: 20px;
     box-shadow: rgba(0, 0, 0, 0.15) 0 5px 15px 0;
+    background-color: ${({theme}) => theme.components.background};
+    color: ${({theme}) => theme.components.textColor};;
 `;

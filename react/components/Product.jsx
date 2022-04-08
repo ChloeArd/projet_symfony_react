@@ -4,11 +4,14 @@ import {useState, useContext} from "react";
 import styled from "styled-components";
 import {darken, lighten} from "polished";
 import {CartContextProvider} from "../context/CartContext";
+import {ThemeContextProvider} from "../context/ThemeContext";
+import {getTheme} from "../theming";
 
 export const Product = function ({className, product, }) {
 
     const [stock, setStock] = useState(product.stock);
     const {setCartUpdated} = useContext(CartContextProvider);
+    const {theme} = useContext(ThemeContextProvider);
 
     /**
      * Handle click on + and - buttons
@@ -48,7 +51,7 @@ export const Product = function ({className, product, }) {
     }
 
     return (
-        <ContainerProduct id={product.id} className={className}>
+        <ContainerProduct id={product.id} className={className} theme={getTheme(theme)}>
             <div className="image">
                 <img src={require(`./../../public/uploads/${product.image}`)} alt={product.name}/>
             </div>
@@ -79,12 +82,12 @@ const ContainerProduct = styled.div`
   width: 100%;
   padding: 20px;
   margin-bottom: 15px;
-  border: 1px solid #F2F2F3;
   border-radius: 10px;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  background-color: white;
+  background-color: ${({theme}) => theme !== undefined && theme.components.background};
+  color: ${({theme}) => theme !== undefined && theme.components.textColor};;
 
   &:hover {
     box-shadow: rgba(23, 38, 211, 0.48) 0 5px 15px 0;
@@ -151,10 +154,6 @@ const Content = styled.div`
     &:hover {
       color: ${lighten(0.05, "#C72C2C")};
     }
-  }
-
-  & > p {
-    color: #2F3540;
   }
 `;
 
