@@ -7,6 +7,7 @@ import {Header} from "./components/Header";
 import {RouteNotFound} from "./components/RouteNotFound";
 import {createGlobalStyle, ThemeProvider} from "styled-components";
 import {getTheme} from "./theming";
+import {ThemeContext} from "./context/ThemeContext";
 
 const BodyStyle = createGlobalStyle`
   body {
@@ -16,7 +17,7 @@ const BodyStyle = createGlobalStyle`
 
 ReactDOM.render(
     <BrowserRouter>
-        <ThemeProvider theme={getTheme("dark")}>
+        <ThemeContext >
             <BodyStyle />
             <Header/>
             <Routes>
@@ -25,7 +26,7 @@ ReactDOM.render(
                 <Route path="user-account" element={<UserAccount/>}/>
                 <Route path="*" element={<RouteNotFound/>}/>
             </Routes>
-        </ThemeProvider>
+        </ThemeContext>
     </BrowserRouter>,
     document.getElementById("root")
 );

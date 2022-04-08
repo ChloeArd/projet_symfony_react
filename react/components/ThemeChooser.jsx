@@ -4,11 +4,11 @@ import {useContext} from "react";
 
 export const ThemeChooser = function () {
 
-    const {theme, toggleTheme} = useContext(ThemeContextProvider);
+    const {theme, toggleMode} = useContext(ThemeContextProvider);
 
     return (
         <ButtonContainer>
-            <button onClick={toggleTheme}>
+            <button onClick={toggleMode}>
                 Mode {theme === "light" ? "dark" : "light"}
             </button>
         </ButtonContainer>
