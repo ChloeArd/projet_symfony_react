@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/fontawesome-free-regular';
 import styled from "styled-components";
-import {getTheme} from "../theming";
 
 export const CartItem = function ({cartItem}) {
 

@@ -2,7 +2,6 @@ import logo from "../../public/uploads/logo.png";
 import {Link} from "react-router-dom";
 import styled from "styled-components";
 import {ThemeChooser} from "./ThemeChooser";
-import {getTheme} from "../theming";
 
 export const Header = function () {
 

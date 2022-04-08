@@ -11,13 +11,13 @@ export const ThemeContext = function ({children}) {
         setMode(mode === "light" ? "dark" : "light");
     }
 
-    return(
-      <ThemeContextProvider.Provider value={{mode, toggleMode}}>
-          <ThemeProvider theme={getTheme(mode)}>
-              <BodyStyle />
-              {children}
-          </ThemeProvider>
-      </ThemeContextProvider.Provider>
+    return (
+        <ThemeContextProvider.Provider value={{mode, toggleMode}}>
+            <ThemeProvider theme={getTheme(mode)}>
+                <BodyStyle/>
+                {children}
+            </ThemeProvider>
+        </ThemeContextProvider.Provider>
     );
 }
 
@@ -34,7 +34,7 @@ const BodyStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
   }
-  
+
   div {
     font-size: 13px;
   }

@@ -1,6 +1,5 @@
 import {useState, useEffect, useContext} from 'react';
 import styled from "styled-components";
-import {getTheme} from "../theming";
 
 export const Categories = function ({setCategory}) {
     const [categories, setCategories] = useState([]);
